@@ -443,6 +443,7 @@ class DefaultArrivalsRepositoryTest {
 
         val result = repository.getArrivals(STOP_ID, 65)
 
+        assertEquals(listOf(65), dataSource.requestedMinutes)
         assertEquals("stop-error-404", result.exceptionOrNull()!!.message)
         assertNull(repository.lastLoaded())
     }

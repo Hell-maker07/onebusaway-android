@@ -298,7 +298,8 @@ class DefaultArrivalsRepository @Inject constructor(
         var result: Result<StopArrivals>
         do {
             result = stopArrivals.arrivals(stopId, minutes)
-            if (result.getOrNull()?.hasArrivals == true) break
+            val snapshot = result.getOrNull() ?: break
+            if (snapshot.hasArrivals) break
             minutes += MINUTES_AFTER_INCREMENT
         } while (minutes <= MINUTES_AFTER_MAX)
 
